@@ -19,3 +19,32 @@
 // function as expected. There are many ways to accomplish this task, but you will need
 // to at minimum add listeners to each link and toggle the display of the tab contents.
 // Hint: display: none; hides an element, and display: block; will bring
+
+
+<
+script >
+
+    var init = 16; // initial font size
+function arrow(event) { // function to handle arrow keys
+    event.preventDefault(); // to prevent default scroll functions
+    var par = document.getElementById("par"); // getting the paragraph
+    switch (event.key) { // switch case
+        case "ArrowDown": //In case of arrow down pressing
+            init = init - (init * 0.1); //Decreasing the ballon size by 10%
+            par.style.fontSize = init + "px"; //Updating the new balloon size
+            break;
+        case "ArrowUp": //In case of arrow up pressing
+            if (init >= 40) { // Setting the max ballon size to 40px
+                par.textContent = "col"; //Repacing with collapsed balloon
+                window.removeEventListener('keydown', arrow); //Removing any more inflating/deflating
+            } else {
+                init = init + (init * 0.1); //increasing the size of balloon
+                par.style.fontSize = init + "px"; //Updating balloon size
+            }
+            break;
+    }
+}
+window.addEventListener("keydown", arrow); //Event listener when key is pressed
+
+<
+/script>
